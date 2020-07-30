@@ -177,7 +177,6 @@ class CaracteristiqueController {
         .update({
           'nom': data.nom
         })
-        //.innerJoin('caracteristique_types', 'caracteristiques.id', 'caracteristique_types.id_type')
 
       /*const caracteristique_types = await CaracteristiqueType.query()
         .table('caracteristiques')
