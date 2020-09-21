@@ -6,7 +6,13 @@ class CaracteristiqueValeurController {
 	async list ({ request, response }) {
     try {
       // Récupération de la liste des commandes
-      const caracteristique_valeurs = await CaracteristiqueValeur.all()
+      const caracteristique_valeurs = await CaracteristiqueValeur.query()
+        .select('texte', 'materiauxes.nom', 'types.nom as type')
+        .from('caracteristique_valeurs')
+        .leftJoin('materiauxes', 'caracteristique_valeurs.id_materiaux', 'materiauxes.id')
+        .leftJoin('caracteristique_types', 'caracteristique_valeurs.id_caracteristique', 'caracteristique_types.id_caracteristique')
+        .leftJoin('types', 'caracteristique_types.id_type', 'types.id')
+
       return response.send({
         status: 'success',
         data: caracteristique_valeurs

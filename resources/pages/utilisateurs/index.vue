@@ -116,7 +116,7 @@ export default {
           value: 'id'
         },
         { text: 'Nom', value: 'utilisateurnom' },
-        { text: 'Nb matériaux rattachés', value: 'materiaux' },
+        { text: 'Matériel', value: 'nbmat' },
         { text: 'Actions', value: 'actions', sortable: false }
       ],
       editedIndex: -1,

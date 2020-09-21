@@ -98,6 +98,8 @@ export default {
           value: 'id'
         },
         { text: 'Texte', value: 'texte' },
+        { text: 'Matériel', value: 'nom' },
+        { text: 'Type', value: 'type' },
         { text: 'Actions', value: 'actions', sortable: false }
       ],
       editedIndex: -1,

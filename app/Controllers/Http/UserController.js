@@ -9,26 +9,22 @@ class UserController {
  async list ({ request, response }) {
     try {
       // Récupération de la liste des commandes
-      const utilisateurs = await Utilisateur.all()
+      // const utilisateurs = await Utilisateur.all()
 
-      // const utilisateurs = await Utilisateur.query()
-      //   .select('utilisateurs.id', 'utilisateurs.nom as utilisateurnom', 'prenom')
-      //   .from('utilisateurs')
-      //   .leftJoin('materiauxes', 'utilisateurs.id', 'materiauxes.id_utilisateur')
-      //   .count('materiauxes.id')
+      const utilisateurs = await Utilisateur.query()
+        .select('utilisateurs.id', 'utilisateurs.nom as utilisateurnom', 'prenom')
+        .from('utilisateurs')
+        .leftJoin('materiauxes', 'utilisateurs.id', 'materiauxes.id_utilisateur')
+        .with('materiauxes', (builder) => builder.withCount('id as nbmat'))
 
-      const nbmat = await Materiaux.query()
-        .from('materiauxes')
-        .leftJoin('utilisateurs', 'materiauxes.id_utilisateur', 'utilisateurs.id')
-        .where('materiauxes.id_utilisateur', 'utilisateurs.id')
-        .groupBy('id_utilisateur')
-        .count('id_utilisateur')
-
-      const total = utilisateurs[0]['count("id_utilisateur")']
+      // const nbmat = await Materiaux.query()
+      //   .select('nom')
+      //   .from('materiauxes')
+      //   .getCount('id')
 
       return response.send({
         status: 'success',
-        data: utilisateurs
+        data: utilisateurs,
       })
     } catch (error) {
       return response.status(500).send({
