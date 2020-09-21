@@ -42,6 +42,51 @@
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field v-model="editedItem.texte" label=" Texte" />
                     </v-col>
+                    <template>
+                      <v-container fluid>
+                        <v-row align="center">
+                          <v-col cols="12" sm="6">
+                            <v-subheader v-text="'Matériel parent :'" />
+                          </v-col>
+
+                          <v-col cols="12" sm="6">
+                            <v-select
+                              v-model="id_mat"
+                              :items="materiauxes"
+                              :item-text="'nom'"
+                              :item-value="'id'"
+                              :clearable="true"
+                              label="Select"
+                              chips
+                              hint="Choissisez un matériel"
+                              persistent-hint
+                            />
+                          </v-col>
+                        </v-row>
+                      </v-container>
+                    </template>
+                    <template>
+                      <v-container fluid>
+                        <v-row align="center">
+                          <v-col cols="12" sm="6">
+                            <v-subheader v-text="'Types :'" />
+                          </v-col>
+
+                          <v-col cols="12" sm="6">
+                            <v-select
+                              v-model="id_type"
+                              :items="types"
+                              :item-text="'nom'"
+                              :item-value="'id'"
+                              label="Select"
+                              hint="Choissisez un type"
+                              persistent-hint
+                              @change="getCaraTypes()"
+                            />
+                          </v-col>
+                        </v-row>
+                      </v-container>
+                    </template>
                   </v-row>
                 </v-container>
               </v-card-text>
@@ -90,6 +135,10 @@ export default {
     return {
       search: '',
       caracteristique_valeurs: [],
+      id_mat: [],
+      materiauxes: [],
+      id_type: [],
+      types: [],
       headers: [
         {
           text: '#',
@@ -183,7 +232,9 @@ export default {
       } else {
         this.caracteristique_valeurs.push(this.editedItem)
         await this.$axios.post('api/caracteristique_valeurs', {
-          texte: this.editedItem.texte
+          texte: this.editedItem.texte,
+          id_mat: this.id_mat,
+          id_type: this.id_type
         }).then((res) => {
           this.getCaraVal()
         })
