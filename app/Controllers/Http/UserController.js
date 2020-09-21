@@ -1,15 +1,20 @@
 
 'use strict'
 
-const Utilisateur = use('App/Models/Utilisateur')
-const Materiaux = use('App/Models/Materiaux')
+const Utilisateur = use('App/Models/utilisateur')
+const Materiaux = use('App/Models/materiaux')
 
 class UserController {
 
  async list ({ request, response }) {
     try {
       // Récupération de la liste des commandes
-      const utilisateurs = await Utilisateur.all()
+      const utilisateurs = await Utilisateur.query()
+        .select('utilisateurs.id', 'utilisateurs.nom', 'prenom', 'materiauxes.nom as materiaux')
+        .from('utilisateurs')
+        .leftJoin('materiauxes', 'utilisateurs.id', 'materiauxes.id_utilisateur')
+        // .count('materiauxes.nom as materiaux')
+
       return response.send({
         status: 'success',
         data: utilisateurs

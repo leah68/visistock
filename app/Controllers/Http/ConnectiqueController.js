@@ -1,8 +1,8 @@
 'use strict'
 
-const Connectique = use('App/Models/Connectique')
+const Connectique = use('App/Models/connectique')
 
-const ConnectiqueMateriaux = use('App/Models/Connectique_Materiaux')
+const ConnectiqueMateriaux = use('App/Models/connectique_materiaux')
 
 class ConnectiqueController {
 	async list ({ request, response }) {

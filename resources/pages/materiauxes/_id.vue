@@ -107,10 +107,10 @@ export default {
     dialog: false,
     headers: [
       {
-        text: 'Valeurs des matériaux',
+        /* text: '#', */
         align: 'start',
-        sortable: false,
-        value: 'name'
+        sortable: false /* ,
+         value: 'id_carval' */
       },
       { text: 'Id_caractéristique', value: 'id_caracteristique' },
       { text: 'Caractéristique', value: 'nom' },

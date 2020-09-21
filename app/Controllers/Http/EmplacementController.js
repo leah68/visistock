@@ -1,6 +1,6 @@
 'use strict'
 
-const Emplacement = use('App/Models/Emplacement')
+const Emplacement = use('App/Models/emplacement')
 
 class EmplacementController {
 	async list ({request, response }) {

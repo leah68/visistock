@@ -92,10 +92,10 @@ export default {
       connectiques: [],
       headers: [
         {
-          text: 'Connectiques',
+          text: '#',
           align: 'start',
-          sortable: false,
-          value: 'name'
+          sortable: true,
+          value: 'id'
         },
         { text: 'Type', value: 'type' },
         { text: 'Actions', value: 'actions', sortable: false }

@@ -1,6 +1,6 @@
 'use strict'
 
-const CaracteristiqueValeur = use('App/Models/Caracteristique_Valeur')
+const CaracteristiqueValeur = use('App/Models/caracteristique_valeur')
 
 class CaracteristiqueValeurController {
 	async list ({ request, response }) {

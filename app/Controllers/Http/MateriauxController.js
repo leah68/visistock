@@ -1,19 +1,21 @@
 'use strict'
 
-const Materiaux = use('App/Models/Materiaux')
+const Materiaux = use('App/Models/materiaux')
 
-const CaracteristiqueType =  use('App/Models/Caracteristique_Type')
-const CaracteristiqueValeur = use('App/Models/Caracteristique_Valeur')
-const ConnectiqueMateriaux = use('App/Models/Connectique_Materiaux')
+const CaracteristiqueType =  use('App/Models/caracteristique_type')
+const CaracteristiqueValeur = use('App/Models/caracteristique_valeur')
+const ConnectiqueMateriaux = use('App/Models/connectique_materiaux')
 
 class MateriauxController {
 	async list ({ request, response }) {
     try {
 
       const materiauxes = await Materiaux.query()
-        .select('materiauxes.id', 'materiauxes.nom', 'prenom', 'utilisateurs.nom as utilisateurnom', 'materiauxes.id_utilisateur'/*, 'caracteristique_valeurs.texte', 'caracteristique_valeurs.id_caracteristique'*/)
+        .select('materiauxes.id', 'materiauxes.nom', 'prenom', 'utilisateurs.nom as utilisateurnom', 'materiauxes.id_utilisateur', 'types.nom as type' /*, 'caracteristique_valeurs.texte', 'caracteristique_valeurs.id_caracteristique'*/)
         .from('materiauxes')
         .leftJoin('utilisateurs', 'materiauxes.id_utilisateur', 'utilisateurs.id')
+        .leftJoin('caracteristique_types', 'materiauxes.id_type', 'caracteristique_types.id_type')
+        .leftJoin('types', 'caracteristique_types.id_type', 'types.id')
         //.innerJoin('caracteristique_types', 'materiauxes.id_type', 'caracteristique_types.id_type')
         //.leftJoin('caracteristique_valeurs', 'materiauxes.id', 'caracteristique_valeurs.id_materiaux')
 
@@ -87,6 +89,7 @@ class MateriauxController {
           .innerJoin('materiauxes', 'connectique_materiauxes.id_materiaux', 'materiauxes.id')
         .where('materiauxes.id', params.id)
         .fetch()
+
 
       return response.send({
         status: 'success',

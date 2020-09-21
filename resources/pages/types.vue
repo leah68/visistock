@@ -119,10 +119,10 @@ export default {
       types: [],
       headers: [
         {
-          text: 'Types',
+          text: '#',
           align: 'start',
-          sortable: false,
-          value: 'name'
+          sortable: true,
+          value: 'id'
         },
         { text: 'Nom', value: 'nom' },
         { text: 'Actions', value: 'actions', sortable: false }

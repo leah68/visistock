@@ -272,13 +272,14 @@ export default {
       caracteristique_types: [],
       headers: [
         {
-          text: 'Matériaux',
+          text: '#',
           align: 'start',
-          sortable: false,
-          value: 'name'
+          sortable: true,
+          value: 'id'
         },
         { text: 'Nom', value: 'nom' },
         { text: 'Utilisateur', value: 'prenom' },
+        { text: 'Type', value: 'type' },
         { text: 'Actions', value: 'actions', sortable: false }
       ],
       editedIndex: -1,

@@ -92,10 +92,10 @@ export default {
       caracteristiques: [],
       headers: [
         {
-          text: 'Caractéristiques',
+          text: '#',
           align: 'start',
-          sortable: false,
-          value: 'name'
+          sortable: true,
+          value: 'id'
         },
         { text: 'Nom', value: 'nom' },
         { text: 'Actions', value: 'actions', sortable: false }

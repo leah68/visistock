@@ -99,10 +99,10 @@ export default {
       emplacements: [],
       headers: [
         {
-          text: 'Emplacements',
+          text: '#',
           align: 'start',
-          sortable: false,
-          value: 'name'
+          sortable: true,
+          value: 'id'
         },
         { text: 'Nom', value: 'nom' },
         { text: 'Actions', value: 'actions', sortable: false }

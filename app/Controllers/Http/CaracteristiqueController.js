@@ -2,11 +2,11 @@
 
 //const CaracteristiqueValeur = require("~~/app/Models/caracteristique_valeur")
 
-const Caracteristique = use('App/Models/Caracteristique')
-const CaracteristiqueType = use('App/Models/Caracteristique_Type')
+const Caracteristique = use('App/Models/caracteristique')
+const CaracteristiqueType = use('App/Models/caracteristique_type')
 
-const Materiaux = use('App/Models/Materiaux')
-const CaracteristiqueValeur = use('App/Models/Caracteristique_Valeur')
+const Materiaux = use('App/Models/materiaux')
+const CaracteristiqueValeur = use('App/Models/caracteristique_valeur')
 
 class CaracteristiqueController {
 	async list ({ request, response }) {

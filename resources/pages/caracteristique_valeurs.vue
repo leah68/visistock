@@ -92,10 +92,10 @@ export default {
       caracteristique_valeurs: [],
       headers: [
         {
-          text: 'Valeurs',
+          text: '#',
           align: 'start',
-          sortable: false,
-          value: 'name'
+          sortable: true,
+          value: 'id'
         },
         { text: 'Texte', value: 'texte' },
         { text: 'Actions', value: 'actions', sortable: false }

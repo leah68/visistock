@@ -1,10 +1,10 @@
 'use strict'
 
 const Database = use('Database')
-const Type = use('App/Models/Type')
+const Type = use('App/Models/type')
 
-const CaracteristiqueType = use('App/Models/Caracteristique_Type')
-const Caracteristique = use('App/Models/Caracteristique')
+const CaracteristiqueType = use('App/Models/caracteristique_type')
+const Caracteristique = use('App/Models/caracteristique')
 //const CaracteristiqueType = use('App/Models/Caracteristique_Type')
 
 //const CaracteristiqueType = use('App/Models/Caracteristique_Type')

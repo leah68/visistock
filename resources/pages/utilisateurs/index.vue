@@ -16,7 +16,6 @@
       :headers="headers"
       :items="utilisateurs"
       :search="search"
-      locale="'fr-FR'"
       class="elevation-1"
     >
       <template v-slot:top>
@@ -111,13 +110,13 @@ export default {
       utilisateurs: [],
       headers: [
         {
-          text: 'Utilisateurs',
+          text: '#',
           align: 'start',
-          sortable: false,
-          value: 'name'
+          sortable: true,
+          value: 'id'
         },
         { text: 'Nom', value: 'nom' },
-        { text: 'Prénom', value: 'prenom' },
+        { text: 'Nb matériaux rattachés', value: 'materiaux' },
         { text: 'Actions', value: 'actions', sortable: false }
       ],
       editedIndex: -1,
