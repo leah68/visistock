@@ -1,6 +1,6 @@
 'use strict'
 
-/** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
+// /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
 
 class ConnectiqueMateriaux extends Model {
@@ -31,6 +31,10 @@ class ConnectiqueMateriaux extends Model {
     return this.hasMany('App/Models/Connectique')
     //.pivotTable('connectique_materiauxes')
     .withPivot(['id_materiaux'])
+  }
+
+  connectique_materiaux () {
+    return this.hasMany('App/Models/connectique_materiaux')
   }
 }
 

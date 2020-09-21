@@ -6,7 +6,7 @@ const Model = use('Model')
 class Materiaux extends Model {
 
   connectique_materiaux () {
-    return this.hasMany('App/Models/Connectique_Materiaux')
+    return this.hasMany('App/Models/connectique_materiaux')
   }
 
   utilisateur () {

@@ -79,18 +79,18 @@
           mdi-delete
         </v-icon>
       </template>
-      <template v-slot:item.nom="{ item }">
+      <template v-slot:item.utilisateurnom="{ item }">
         <a
           :href="'/utilisateurs/' +item.id"
-          v-text="item.nom"
+          v-text="item.utilisateurnom"
         />
       </template>
-      <template v-slot:item.prenom="{ item }">
+      <!-- <template v-slot:item.prenom="{ item }">
         <a
           :href="'/utilisateurs/' +item.id"
           v-text="item.prenom"
         />
-      </template>
+      </template> -->
       <template v-slot:no-data>
         <v-btn color="teal" dark @click="getUsers()">
           Actualiser
@@ -115,7 +115,7 @@ export default {
           sortable: true,
           value: 'id'
         },
-        { text: 'Nom', value: 'nom' },
+        { text: 'Nom', value: 'utilisateurnom' },
         { text: 'Nb matériaux rattachés', value: 'materiaux' },
         { text: 'Actions', value: 'actions', sortable: false }
       ],

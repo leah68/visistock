@@ -20,10 +20,10 @@ class Connectique extends Model {
       .pivotTable('connectique_materiauxes');
   } */
 
-  connectique_materiauxes () {
-    return this.hasMany('App/Models/Connectique_Materiaux', 'connectique_materiauxes')
-    //.withPivot(['id_materiaux'])
-  }
+  // connectique_materiaux () {
+  //   return this.hasMany('App/Models/ConnectiqueMateriaux', 'connectique_materiauxes')
+  //   //.withPivot(['id_materiaux'])
+  // }
 
   materiauxes () {
     return this.belongsToMany('App/Models/Materiaux').pivotTable('connectique_materiauxes', 'materiauxes')

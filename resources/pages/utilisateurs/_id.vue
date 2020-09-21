@@ -171,7 +171,7 @@ export default {
       utilisateurs_materiaux: [],
       headers: [
         {
-          text: 'Matériaux',
+          text: '#',
           align: 'start',
           sortable: false,
           value: 'utilisateursnom'
@@ -226,6 +226,7 @@ export default {
     async getUserMat () {
       await this.$axios.get('/api/utilisateurs/' + this.$route.params.id + '/materiaux').then((res) => {
         this.utilisateurs_materiaux = res.data.data
+        console.log(this.utilisateurs_materiaux)
       })
     },
 
