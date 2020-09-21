@@ -46,7 +46,7 @@
                       <v-container fluid>
                         <v-row align="center">
                           <v-col cols="12" sm="6">
-                            <v-subheader v-text="'Matériel parent :'" />
+                            <v-subheader v-text="'Matériel :'" />
                           </v-col>
 
                           <v-col cols="12" sm="6">
@@ -81,7 +81,6 @@
                               label="Select"
                               hint="Choissisez un type"
                               persistent-hint
-                              @change="getCaraTypes()"
                             />
                           </v-col>
                         </v-row>
@@ -180,6 +179,8 @@ export default {
 
   mounted () {
     this.getCaraVal()
+    this.getMat()
+    this.getType()
   },
 
   methods: {
@@ -189,13 +190,26 @@ export default {
       })
     },
 
-    async insertCaraVal (texte) {
-      await this.$axios.post('api/caracteristique_valeurs', {
-        texte: this.texte
-      }).then((res) => {
-        this.getCaraVal()
+    async getMat () {
+      await this.$axios.get('/api/materiauxes').then((res) => {
+        this.materiauxes = res.data.data
       })
     },
+
+    async getType () {
+      await this.$axios.get('/api/types').then((res) => {
+        this.types = res.data.data
+        console.log(this.types)
+      })
+    },
+
+    // async insertCaraVal (texte) {
+    //   await this.$axios.post('api/caracteristique_valeurs', {
+    //     texte: this.texte
+    //   }).then((res) => {
+    //     this.getCaraVal()
+    //   })
+    // },
 
     editItem (item) {
       this.editedIndex = this.caracteristique_valeurs.indexOf(item)
@@ -217,6 +231,8 @@ export default {
       this.dialog = false
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
+        this.id_type = ''
+        this.id_mat = ''
         this.editedIndex = -1
       })
     },

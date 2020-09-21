@@ -66,6 +66,8 @@ class CaracteristiqueValeurController {
         const data = request.post()
         const caracteristique_valeurs = new CaracteristiqueValeur()
         caracteristique_valeurs.texte = data.texte
+        caracteristique_valeurs.id_mat = data.id_materiaux
+        caracteristique_valeurs.id_type = data.id_type
         await caracteristique_valeurs.save()
 
       return response.send({
