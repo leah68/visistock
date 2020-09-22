@@ -1,9 +1,9 @@
 'use strict'
 
-const TypeSchema = require("~~/database/migrations/1590505350898_type_schema")
-
 const CaracteristiqueValeur = use('App/Models/caracteristique_valeur')
 const Materiaux = use('App/Models/materiaux')
+
+const CaracteristiqueType = use('App/Models/caracteristique_type')
 
 class CaracteristiqueValeurController {
 	async list ({ request, response }) {
@@ -53,9 +53,9 @@ class CaracteristiqueValeurController {
         console.log(id)
   
         const materiauxes = await Materiaux.query()
-          .select('materiauxes.id', 'materiauxes.nom as matnom', 'types.nom as type')
+          .select('materiauxes.nom as matnom'/*, 'types.nom as type'*/)
           .from('materiauxes')
-          .innerJoin('types', 'materiauxes.id_type', 'types.id')
+          // .innerJoin('types', 'materiauxes.id_type', 'types.id')
           .where('materiauxes.id', params.id)
           .first()
 
@@ -72,7 +72,7 @@ class CaracteristiqueValeurController {
     }
   }
 
-  async insert ({ request, response}) {
+  async insert ({params, request, response}) {
     try {
       console.log(request.post())
       // Récupération de la liste des commandes
@@ -80,12 +80,24 @@ class CaracteristiqueValeurController {
         const caracteristique_valeurs = new CaracteristiqueValeur()
         caracteristique_valeurs.texte = data.texte
         caracteristique_valeurs.id_materiaux = data.id_materiaux
-        // caracteristique_valeurs.id_type = data.id_type
         await caracteristique_valeurs.save()
+
+        //récupérer l'id_caracteristique qui est lié au type qui est lié au matériel
+
+        // A FINIR
+        // const caraval = await CaracteristiqueValeur.query()
+        // .from('caracteristique_valeurs')
+        // .innerJoin('materiauxes', 'caracteristique_valeurs.id_materiaux', 'materiauxes.id')
+        // .innerJoin('caracteristique_types', 'materiauxes.id_type', 'caracteristique_types.id_type')
+        // .where('id_caracteristique', data.id_caracteristique)
+        // .insert({
+        //   'id_caracteristique': 2,
+        // })
 
       return response.send({
         status: 'success',
-        data: caracteristique_valeurs
+        data: 
+          caracteristique_valeurs
       })
     } catch (error) {
       return response.status(500).send({

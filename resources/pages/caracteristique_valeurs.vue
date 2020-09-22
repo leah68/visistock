@@ -65,7 +65,7 @@
                         </v-row>
                       </v-container>
                     </template>
-                    <template>
+                    <!-- <template>
                       <v-container fluid>
                         <v-row align="center">
                           <v-col cols="12" sm="6">
@@ -85,7 +85,7 @@
                           </v-col>
                         </v-row>
                       </v-container>
-                    </template>
+                    </template> -->
                   </v-row>
                 </v-container>
               </v-card-text>
@@ -220,7 +220,7 @@ export default {
         console.log(this.carvalEdit)
         if (this.carvalEdit !== null) {
           this.id_materiaux = this.carvalEdit.matnom
-          this.id_type = this.carvalEdit.type
+          // this.id_type = this.carvalEdit.type
         }
       })
     },
@@ -256,8 +256,8 @@ export default {
         this.caracteristique_valeurs.push(this.editedItem)
         await this.$axios.post('api/caracteristique_valeurs', {
           texte: this.editedItem.texte,
-          id_materiaux: this.id_materiaux,
-          id_type: this.id_type
+          id_materiaux: this.id_materiaux
+          // id_caracteristique: this.id_caracteristique
         }).then((res) => {
           this.getCaraVal()
         })
