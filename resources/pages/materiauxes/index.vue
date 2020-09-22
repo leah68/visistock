@@ -226,10 +226,10 @@
           mdi-delete
         </v-icon>
       </template>
-      <template v-slot:item.prenom="{ item }">
+      <template v-slot:item.utilisateurnom="{ item }">
         <a
           :href="'/utilisateurs/' +item.id_utilisateur"
-          v-text="item.prenom"
+          v-text="item.utilisateurnom"
         />
       </template>
       <template v-slot:item.nom="{ item }">
@@ -278,7 +278,7 @@ export default {
           value: 'id'
         },
         { text: 'Nom', value: 'nom' },
-        { text: 'Utilisateur', value: 'prenom' },
+        { text: 'Utilisateur', value: 'utilisateurnom' },
         { text: 'Type', value: 'type' },
         { text: 'Actions', value: 'actions', sortable: false }
       ],

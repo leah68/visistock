@@ -12,7 +12,7 @@ class UserController {
       // const utilisateurs = await Utilisateur.all()
 
       const utilisateurs = await Utilisateur.query()
-        .select('utilisateurs.id', 'utilisateurs.nom as utilisateurnom', 'prenom')
+        .select('utilisateurs.id', 'utilisateurs.nom as utilisateurnom'/*, 'prenom'*/)
         .from('utilisateurs')
         .leftJoin('materiauxes', 'utilisateurs.id', 'materiauxes.id_utilisateur')
         .with('materiauxes', (builder) => builder.withCount('id as nbmat'))
@@ -107,7 +107,7 @@ class UserController {
         const data = request.post()
         const utilisateurs = new Utilisateur()
         utilisateurs.nom = data.nom
-        utilisateurs.prenom = data.prenom
+        utilisateurs.prenom = ''
         await utilisateurs.save()
 
       return response.send({
@@ -156,7 +156,7 @@ class UserController {
         .where('id', params.id)
         .update({
           'nom': data.nom,
-          'prenom': data.prenom
+          // 'prenom': data.prenom
         })
 
       return response.send({

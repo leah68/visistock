@@ -41,12 +41,12 @@
               <v-card-text>
                 <v-container>
                   <v-row>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field v-model="editedItem.nom" label=" Nom" />
+                    <v-col>
+                      <v-text-field v-model="editedItem.nom" label=" Nom Prénom" />
                     </v-col>
-                    <v-col cols="12" sm="6" md="4">
+                    <!-- <v-col cols="12" sm="6" md="4">
                       <v-text-field v-model="editedItem.prenom" label="Prénom" />
-                    </v-col>
+                    </v-col> -->
                   </v-row>
                 </v-container>
               </v-card-text>
@@ -160,6 +160,7 @@ export default {
     },
 
     editItem (item) {
+      console.log('coucou')
       this.editedIndex = this.utilisateurs.indexOf(item)
       this.editedItem = Object.assign({}, item)
       console.log(this.editedItem)
