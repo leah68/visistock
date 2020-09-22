@@ -56,6 +56,7 @@ Route.delete('api/caracteristique_valeurs/:id/delete', 'CaracteristiqueValeurCon
 Route.put('api/caracteristique_valeurs/:id', 'CaracteristiqueValeurController.update')
 //Route.get('api/caracteristique_valeurs/:id', 'CaracteristiqueValeurController.selectEdit')
 Route.post('api/caracteristique_valeurs/:id', 'CaracteristiqueValeurController.insertCaraVal')
+Route.get('api/caracteristique_valeurs/:id/edit', 'CaracteristiqueValeurController.selectEdit')
 
 //materiauxes
 Route.get('api/materiauxes/:id/caracteristique_valeurs', 'MateriauxController.selectCaraVal')

@@ -51,7 +51,7 @@
 
                           <v-col cols="12" sm="6">
                             <v-select
-                              v-model="id_mat"
+                              v-model="id_materiaux"
                               :items="materiauxes"
                               :item-text="'nom'"
                               :item-value="'id'"
@@ -134,7 +134,7 @@ export default {
     return {
       search: '',
       caracteristique_valeurs: [],
-      id_mat: [],
+      id_materiaux: [],
       materiauxes: [],
       id_type: [],
       types: [],
@@ -199,7 +199,7 @@ export default {
     async getType () {
       await this.$axios.get('/api/types').then((res) => {
         this.types = res.data.data
-        console.log(this.types)
+        // console.log(this.types)
       })
     },
 
@@ -211,11 +211,18 @@ export default {
     //   })
     // },
 
-    editItem (item) {
+    async editItem (item) {
       this.editedIndex = this.caracteristique_valeurs.indexOf(item)
       this.editedItem = Object.assign({}, item)
-      console.log(this.editedItem)
       this.dialog = true
+      await this.$axios.get('/api/caracteristique_valeurs/' + item.id + '/edit').then((res) => {
+        this.carvalEdit = res.data.data
+        console.log(this.carvalEdit)
+        if (this.carvalEdit !== null) {
+          this.id_materiaux = this.carvalEdit.matnom
+          this.id_type = this.carvalEdit.type
+        }
+      })
     },
 
     async deleteItem (item) {
@@ -232,7 +239,7 @@ export default {
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
         this.id_type = ''
-        this.id_mat = ''
+        this.id_materiaux = ''
         this.editedIndex = -1
       })
     },
@@ -249,7 +256,7 @@ export default {
         this.caracteristique_valeurs.push(this.editedItem)
         await this.$axios.post('api/caracteristique_valeurs', {
           texte: this.editedItem.texte,
-          id_mat: this.id_mat,
+          id_materiaux: this.id_materiaux,
           id_type: this.id_type
         }).then((res) => {
           this.getCaraVal()

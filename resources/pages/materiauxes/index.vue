@@ -104,7 +104,7 @@
                             <v-select
                               v-model="id_utilisateur"
                               :items="utilisateurs"
-                              :item-text="'nom'"
+                              :item-text="'utilisateurnom'"
                               :item-value="'id'"
                               :clearable="true"
                               label="Select"

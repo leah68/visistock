@@ -26,6 +26,9 @@ class CaracteristiqueType extends Model {
   types () {
     return this.belongsTo('App/Models/Type', 'id_type')
   }*/
+  caracteristique_type () {
+    return this.hasMany('App/Models/caracteristique_type')
+  }
 }
 
 module.exports = CaracteristiqueType

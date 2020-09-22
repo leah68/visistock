@@ -1,13 +1,16 @@
 'use strict'
 
+const TypeSchema = require("~~/database/migrations/1590505350898_type_schema")
+
 const CaracteristiqueValeur = use('App/Models/caracteristique_valeur')
+const Materiaux = use('App/Models/materiaux')
 
 class CaracteristiqueValeurController {
 	async list ({ request, response }) {
     try {
       // Récupération de la liste des commandes
       const caracteristique_valeurs = await CaracteristiqueValeur.query()
-        .select('texte', 'materiauxes.nom', 'types.nom as type')
+        .select('caracteristique_valeurs.id', 'texte', 'materiauxes.nom', 'types.nom as type')
         .from('caracteristique_valeurs')
         .leftJoin('materiauxes', 'caracteristique_valeurs.id_materiaux', 'materiauxes.id')
         .leftJoin('caracteristique_types', 'caracteristique_valeurs.id_caracteristique', 'caracteristique_types.id_caracteristique')
@@ -26,29 +29,39 @@ class CaracteristiqueValeurController {
     }
   }
 
-  /*async selectEdit ({params, request, response }) {
+  async selectEdit ({params, request, response }) {
     try {
-      const id = params.id
-      console.log(id)
+      // const id = params.id
+      // console.log(id)
 
-      const caracteristique_valeurs= await CaracteristiqueValeur.query()
-        .select('*')
-        .from('caracteristique_valeurs')
-        .where('id_materiaux', params.id)
-        .innerJoin('materiauxes', 'caracteristique_valeurs.id_materiaux', 'materiauxes.id')
-        .innerJoin('caracteristique_types', 'materiauxes.id_type', 'caracteristique_types.id_type')
+      // const caracteristique_valeurs= await CaracteristiqueValeur.query()
+        // .select('*')
+        // .from('caracteristique_valeurs')
+        // .where('id_materiaux', params.id)
+        // .innerJoin('materiauxes', 'caracteristique_valeurs.id_materiaux', 'materiauxes.id')
+        // .innerJoin('caracteristique_types', 'materiauxes.id_type', 'caracteristique_types.id_type')
 
-        /*.select('caracteristique_valeurs.id', 'caracteristique_valeurs.texte')
-        .from('materiauxes')
-        .innerJoin('types', 'materiauxes.id_type', 'types.id')
-        .where('materiauxes.id', 'materiauxes.id_type')
-        .innerJoin('caracteristique_valeurs', 'materiauxes.id', 'caracteristique_valeurs.id_materiaux')
-        .where('materiauxes.id', params.id)
-        .first()*/
+        // .select('caracteristique_valeurs.id', 'caracteristique_valeurs.texte')
+        // .from('materiauxes')
+        // .innerJoin('types', 'materiauxes.id_type', 'types.id')
+        // .where('materiauxes.id', 'materiauxes.id_type')
+        // .innerJoin('caracteristique_valeurs', 'materiauxes.id', 'caracteristique_valeurs.id_materiaux')
+        // .where('materiauxes.id', params.id)
+        // .first()
 
-      /*return response.send({
+        const id = params.id
+        console.log(id)
+  
+        const materiauxes = await Materiaux.query()
+          .select('materiauxes.id', 'materiauxes.nom as matnom', 'types.nom as type')
+          .from('materiauxes')
+          .innerJoin('types', 'materiauxes.id_type', 'types.id')
+          .where('materiauxes.id', params.id)
+          .first()
+
+      return response.send({
         status: 'success',
-        data: caracteristique_valeurs
+        data: materiauxes
       })
     } catch (error) {
       return response.status(500).send({
@@ -57,7 +70,7 @@ class CaracteristiqueValeurController {
         message: 'Une erreur a été rencontrée lors du chargement des commandes : ' + error.message
       })
     }
-  }*/
+  }
 
   async insert ({ request, response}) {
     try {
@@ -66,8 +79,8 @@ class CaracteristiqueValeurController {
         const data = request.post()
         const caracteristique_valeurs = new CaracteristiqueValeur()
         caracteristique_valeurs.texte = data.texte
-        caracteristique_valeurs.id_mat = data.id_materiaux
-        caracteristique_valeurs.id_type = data.id_type
+        caracteristique_valeurs.id_materiaux = data.id_materiaux
+        // caracteristique_valeurs.id_type = data.id_type
         await caracteristique_valeurs.save()
 
       return response.send({

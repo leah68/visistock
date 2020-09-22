@@ -9,7 +9,7 @@ class Caracteristique extends Model {
   }
 
   types () {
-    return this.belongsToMany('App/Models/Type').pivotTable('caracteristique_type', 'types')
+    return this.belongsToMany('App/Models/Type').pivotTable('caracteristique_types', 'types')
   }
 
   caracteristique_valeur () {

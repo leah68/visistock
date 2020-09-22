@@ -7,9 +7,12 @@ class Type extends Model {
   //caracteristique_type () {
     //return this.hasMany('App/Models/CaracteristiqueType')
   //}
+  caracteristique_type () {
+    return this.hasMany('App/Models/caracteristique_type')
+  }
 
   caracteristiques () {
-    return this.hasMany('App/Models/Caracteristique_Type')
+    return this.hasMany('App/Models/caracteristique')
   }
 
   /*
